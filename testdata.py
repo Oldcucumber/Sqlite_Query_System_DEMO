@@ -30,7 +30,7 @@ def generate_phone_number():
 
 
 def generate_data():
-    for _ in range(10000000):  # 生成1000条数据
+    for _ in range(1000):  # 生成1000条数据
             id = generate_license_plate()
             owner = generate_owner_name()
             phone_number = generate_phone_number()
