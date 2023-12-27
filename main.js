@@ -20,16 +20,18 @@ document.getElementById("query-form").addEventListener("submit", async (e) => {
   LRUNJK6k0NmoQ6OvmoudnIhb7STuBp42HswksaIx5Q6yVqKMEPOtSGj6zIwJpRD6
   4z0/IKzbm4200I4jDvkToKUCAwEAAQ==`;
 
+
+  //Bug:这里有一个美妙的问题，无人问津
   //AES加密
-  const aeskey = CryptoJS.lib.WordArray.random(32);
-  const vi = CryptoJS.lib.WordArray.random(16);
+  //const aeskey = CryptoJS.lib.WordArray.random(32);
+  //const vi = CryptoJS.lib.WordArray.random(16);
   
   // 解密
-const decrypted = CryptoJS.AES.decrypt(encrypted, key, {
-  iv: iv,
-  mode: CryptoJS.mode.CBC, // 使用CBC模式
-  padding: CryptoJS.pad.Pkcs7 // 明确指定PKCS#7填充
-});
+//const decrypted = CryptoJS.AES.decrypt(encrypted, key, {
+  //iv: iv,
+  //mode: CryptoJS.mode.CBC, // 使用CBC模式
+  //padding: CryptoJS.pad.Pkcs7 // 明确指定PKCS#7填充
+//});
 
 
   // 创建加密函数
