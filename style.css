@@ -168,3 +168,11 @@ form {
     width: 250px;  /* 根据需要调整宽度 */
     height: 124px; /* 根据需要调整高度 */
 }
+
+.opensource-link {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    color: white;
+    text-align: left;
+}

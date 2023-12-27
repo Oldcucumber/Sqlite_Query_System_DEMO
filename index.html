@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <!-- 引入 JSEncrypt 库 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.0.0-rc.1/jsencrypt.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <!-- 暂时用不上 -->
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script-->
 </head>
 <body>
     <h1>查询系统</h1>
@@ -29,10 +30,14 @@
     <div id="result">
         <h2>查询结果：</h2>
         <ul id="results"></ul>
+        <button id="hideResults">隐藏结果</button>
     </div>
     <script src="main.js"></script>
     <div class="iframe-container">
         <iframe frameborder="0" border="1" marginwidth="0" marginheight="0" width="250" height="124" src="//music.163.com/outchain/player?type=2&id=5150312&auto=1&height=60"></iframe>
-    </div>     
+    </div>  
+    <div class="opensource-link">
+        <a href="https://github.com/Oldcucumber/Sqlite_Query_System_DEMO" target="_blank">开源地址</a>
+    </div>   
 </body>
 </html>
