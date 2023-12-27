@@ -1,0 +1,2 @@
+# Sqlite_Query_System_DEMO
+基于SQLite的静态网页查询的课程设计车牌查询Demo
