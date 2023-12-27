@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车牌查询系统</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入 JSEncrypt 库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.0.0-rc.1/jsencrypt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+</head>
+<body>
+    <h1>查询系统</h1>
+    <form id="query-form">
+        <label for="username">用户名：</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">密码：</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <label for="plate">查询关键词：</label>
+        <input type="text" id="plate" name="plate" required>
+        <br>
+        <button type="submit">查询</button>
+    </form>
+    <div id="loading">
+        <h2>查询中，请等待...</h2>
+    </div>
+    <div id="result">
+        <h2>查询结果：</h2>
+        <ul id="results"></ul>
+    </div>
+    <script src="main.js"></script>
+    <div class="iframe-container">
+        <iframe frameborder="0" border="1" marginwidth="0" marginheight="0" width="250" height="124" src="//music.163.com/outchain/player?type=2&id=5150312&auto=1&height=60"></iframe>
+    </div>     
+</body>
+</html>

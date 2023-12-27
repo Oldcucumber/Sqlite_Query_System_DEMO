@@ -1,0 +1,170 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #121212; /* 暗黑背景色 */
+    color: #fff; /* 亮色文字 */
+    display: flex;
+    flex-direction: column; /* 垂直排列 */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0; /* 移除默认的边距 */
+}
+
+@keyframes BackgroundAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#loading, #result {
+    display: none;
+    background-color: #222; /* 深灰背景色 */
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px; /* 添加圆角 */
+    width: 350px; /* 固定宽度 */
+    margin: 10px; /* 添加外边距 */
+}
+
+form {
+    background-color: #222; /* 深灰背景色 */
+    padding: 20px;
+    border-radius: 10px; /* 添加圆角 */
+    margin-bottom: 20px; /* 添加底部外边距 */
+    width: 100%; /* 适应屏幕宽度 */
+    max-width: 400px; /* 最大宽度限制 */
+}
+
+h1 {
+    margin-bottom: 20px; /* 标题底部外边距 */
+}
+
+input[type="text"], input[type="password"] {
+    width: calc(100% - 22px); /* 减去padding和border的宽度 */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #333; /* 细边框 */
+    border-radius: 5px; /* 添加圆角 */
+    background-color: #1a1a1a; /* 输入框背景色 */
+    color: #fff; /* 输入框文字色 */
+}
+
+button {
+    width: 100%; /* 按钮宽度与输入框一致 */
+    padding: 10px;
+    background-color: #007aff; /* 使用类似Apple的蓝色 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; /* 添加顶部外边距 */
+}
+
+button:hover {
+    background-color: #005ecb; /* 鼠标悬停时的深蓝色 */
+}
+
+ul {
+    list-style: none; /* 移除列表标记 */
+    padding: 0; /* 移除默认的内边距 */
+}
+
+li {
+    padding: 5px 0; /* 列表项之间的间距 */
+    border-bottom: 1px solid #333; /* 细分割线 */
+}
+
+/* 适应屏幕的小尺寸 */
+@media (max-width: 400px) {
+    body {
+        background-size: 800% 800%; /* 调整背景大小 */
+    }
+    input[type="text"], input[type="password"], button {
+        width: 100%; /* 全宽度 */
+    }
+}
+#result {
+    display: block;
+    background-color: #1c1c1e; /* 暗背景色 */
+    padding: 20px;
+    text-align: left;
+    border-radius: 10px; /* 添加圆角 */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* 添加阴影 */
+    color: #ffffff; /* 文字颜色 */
+    margin: 10px 0; /* 外边距 */
+}
+
+#result div.card {
+    background-color: #2c2c2e; /* 卡片背景色 */
+    padding: 15px;
+    margin-bottom: 10px; /* 卡片间距 */
+    border-radius: 10px; /* 圆角 */
+    border: 1px solid #3a3a3c; /* 边框 */
+}
+
+#result div.card h3 {
+    font-size: 1.1em; /* 标题字体大小 */
+    color: #10d7a5; /* OpenAI品牌颜色 */
+    margin-bottom: 5px; /* 标题下的边距 */
+}
+
+#result div.card p {
+    font-size: 0.9em; /* 段落字体大小 */
+    color: #a2a2a5; /* 文字颜色 */
+    margin: 5px 0; /* 段落间距 */
+}
+
+.result-item {
+    margin-bottom: 10px; /* 为每个结果项添加一些底部外边距 */
+    padding: 5px; /* 内边距 */
+    background: #333; /* 暗色背景 */
+    color: #fff; /* 亮色文本 */
+    border-radius: 5px; /* 轻微的圆角 */
+}
+
+.result-item div {
+    margin: 5px 0; /* 为每个属性添加一些间距 */
+}
+
+.result-item span:first-child {
+    font-weight: bold; /* 加粗标签名称 */
+}
+
+#result {
+    display: none; /* 默认隐藏结果 */
+    /* 其他样式保持不变 */
+}
+
+body {
+    /* 其他样式保持不变 */
+    background-image: url('back.gif'); /* 设置背景图 */
+    background-size: cover; /* 确保背景图片覆盖整个屏幕 */
+    background-attachment: fixed; /* 背景图片不随滚动条滚动 */
+    background-position: center; /* 背景图片居中显示 */
+}
+
+form {
+    /* 其他样式保持不变 */
+    backdrop-filter: blur(10px); /* 添加模糊效果 */
+    /*background-color: rgba(255, 255, 255, 0.5); /* 半透明白色背景 */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 添加轻微的边框 */
+    padding: 20px; /* 根据需要调整 */
+    border-radius: 10px; /* 添加圆角 */
+}
+
+#result {
+    /* 其他样式保持不变 */
+    backdrop-filter: blur(10px); /* 添加模糊效果 */
+    background-color: rgba(255, 255, 255, 0.5); /* 半透明白色背景 */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 添加轻微的边框 */
+    padding: 20px; /* 根据需要调整 */
+    border-radius: 10px; /* 添加圆角 */
+}
+
+.iframe-container {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 250px;  /* 根据需要调整宽度 */
+    height: 124px; /* 根据需要调整高度 */
+}
