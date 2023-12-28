@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from app import db, User
-import os
 
 app = Flask(__name__)
 current_directory = os.getcwd()

@@ -1,21 +1,19 @@
+import os
+import base64
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-import base64
 from flask_cors import CORS
-import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_v1_5 as PKCS1_cipher
 from sqlalchemy import text
 
-
 print(os.getcwd())
 
 # 读取同目录的private_key.pem文件，获取私钥
 with open("private_key.pem", "rb") as f:
     private_key = RSA.importKey(f.read())
-
 
 app = Flask(__name__)
 
@@ -27,26 +25,29 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(current_direct
 db = SQLAlchemy(app)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-# 用户名、密码和密文的映射表
+# TODO:创建AES加解密函数
+
+# 初始化User表
 
 
 class User(db.Model):
-    username = db.Column(db.String(80), primary_key=True,unique=True, nullable=False)
+    username = db.Column(db.String(80), primary_key=True,
+                         unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
 
 
-# TODO:创建AES加解密函数
-
-
-# 数据查询表
+# 初始化Data表
 class Data(db.Model):
     id = db.Column(db.String(7), primary_key=True, unique=True)
     owner = db.Column(db.String(5), nullable=False)
     phone_number = db.Column(db.String(11), nullable=False)
 
 
+# 载入数据库
 with app.app_context():
     db.create_all()
+
+# RSA解密
 
 
 def decrypt_data(encrypt_msg):
@@ -54,6 +55,8 @@ def decrypt_data(encrypt_msg):
     cipher = PKCS1_cipher.new(private_key)
     back_text = cipher.decrypt(base64.b64decode(encrypt_msg), 0)
     return back_text.decode('utf-8')
+
+# 查询函数
 
 
 def perform_query(search_query):
@@ -67,6 +70,8 @@ def perform_query(search_query):
     query_result = db.session.execute(
         query, [{"search_query": f'%{search_query}%'}]).fetchall()
     return [{'id': row['id'], 'owner': row['owner'], 'phone_number': row['phone_number']} for row in query_result]
+
+# 主路由
 
 
 @app.route('/api/query', methods=['POST'])
@@ -100,7 +105,8 @@ def query():
 
         if results:
             # 有查询结果
-            data_list = [{'id': data.id, 'owner': data.owner,'phone_number': data.phone_number} for data in results]
+            data_list = [{'id': data.id, 'owner': data.owner,
+                          'phone_number': data.phone_number} for data in results]
             return jsonify({'results': data_list})
         else:
             # 查询成功但无结果

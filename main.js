@@ -32,7 +32,7 @@ document.getElementById("query-form").addEventListener("submit", async (e) => {
   //padding: CryptoJS.pad.Pkcs7 // 明确指定PKCS#7填充
   //});
 
-  // 创建加密函数
+  // 创建RSA加密函数
   function encrypt(text) {
     // 使用 RSA 公钥
     const encrypt = new JSEncrypt();
@@ -42,17 +42,6 @@ document.getElementById("query-form").addEventListener("submit", async (e) => {
     const encrypted = encrypt.encrypt(text);
 
     return encrypted;
-  }
-
-  // 创建解密函数
-  function decrypt(text, key) {
-    let decrypted = "";
-    for (let i = 0; i < text.length; i++) {
-      decrypted += String.fromCharCode(
-        text.charCodeAt(i) ^ key.charCodeAt(i % key.length)
-      );
-    }
-    return decrypted;
   }
 
   // 加密请求数据
@@ -136,7 +125,7 @@ document.getElementById("query-form").addEventListener("submit", async (e) => {
     document.getElementById("loading").style.display = "none";
   }
 });
-
+  //监听隐藏按钮
 document.getElementById("hideResults").addEventListener("click", function () {
   document.getElementById("result").style.display = "none";
 });

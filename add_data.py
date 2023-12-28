@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from app import db, Data  # 导入 Data 模型
-import os
 
 app = Flask(__name__)
 current_directory = os.getcwd()
