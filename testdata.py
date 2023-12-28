@@ -28,9 +28,8 @@ def generate_owner_name():
 def generate_phone_number():
     return '1' + ''.join(str(randint(0, 9)) for _ in range(10))
 
-
 def generate_data():
-    for _ in range(1000):  # 生成1000条数据
+    for index, _ in enumerate(range(9999999), 1):  # 生成n条数据，enumerate从1开始计数
             id = generate_license_plate()
             owner = generate_owner_name()
             phone_number = generate_phone_number()
@@ -38,7 +37,9 @@ def generate_data():
             new_data = Data(id=id, owner=owner, phone_number=phone_number)
             db.session.add(new_data)
             db.session.commit()
+            print(f"第{index}条测试数据已生成并添加到数据库。")  # 打印当前条目数
     return "1000条测试数据已生成并添加到数据库。"
+
 
 if __name__ == '__main__':
     with app.app_context():
