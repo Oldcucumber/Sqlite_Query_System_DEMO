@@ -23,4 +23,3 @@ if __name__ == '__main__':
         db.session.commit()
 
         print("用户已成功添加到数据库。")
-

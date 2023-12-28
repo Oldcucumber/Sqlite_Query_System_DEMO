@@ -20,22 +20,20 @@ document.getElementById("query-form").addEventListener("submit", async (e) => {
   LRUNJK6k0NmoQ6OvmoudnIhb7STuBp42HswksaIx5Q6yVqKMEPOtSGj6zIwJpRD6
   4z0/IKzbm4200I4jDvkToKUCAwEAAQ==`;
 
-
-  //Bug:这里有一个美妙的问题，无人问津
+  //TODO:这里有一个美妙的问题，无人问津
   //AES加密
   //const aeskey = CryptoJS.lib.WordArray.random(32);
   //const vi = CryptoJS.lib.WordArray.random(16);
-  
+
   // 解密
-//const decrypted = CryptoJS.AES.decrypt(encrypted, key, {
+  //const decrypted = CryptoJS.AES.decrypt(encrypted, key, {
   //iv: iv,
   //mode: CryptoJS.mode.CBC, // 使用CBC模式
   //padding: CryptoJS.pad.Pkcs7 // 明确指定PKCS#7填充
-//});
-
+  //});
 
   // 创建加密函数
-  function encrypt(text)   {
+  function encrypt(text) {
     // 使用 RSA 公钥
     const encrypt = new JSEncrypt();
     encrypt.setPublicKey(publicKey);
@@ -44,7 +42,7 @@ document.getElementById("query-form").addEventListener("submit", async (e) => {
     const encrypted = encrypt.encrypt(text);
 
     return encrypted;
-}
+  }
 
   // 创建解密函数
   function decrypt(text, key) {
@@ -68,7 +66,7 @@ document.getElementById("query-form").addEventListener("submit", async (e) => {
     username: username,
     password: encrypted_password,
     encrypted_data: encrypted_data,
-  }
+  };
 
   // 显示等待弹窗
   document.getElementById("loading").style.display = "block";
@@ -88,49 +86,48 @@ document.getElementById("query-form").addEventListener("submit", async (e) => {
       throw new Error("服务器返回了错误响应");
     }
 
-// 获取并处理查询结果
-const result = await response.json();
-const resultsElement = document.getElementById('results');
-// 清空之前的结果
-resultsElement.innerHTML = '';
-if (result.error) {
-    // 如果后端返回错误信息
-    alert(result.error);
-} else if (result.results && result.results.length > 0) {
-    // 如果查询有结果
-    result.results.forEach(item => {
-      // 创建包含结果的div
-      const resultDiv = document.createElement('div');
-      resultDiv.classList.add('result-item'); // 添加类以便样式化
-  
-      // 创建车牌号的div，并填充内容
-      const plateDiv = document.createElement('div');
-      plateDiv.innerHTML = `<span>车牌号：</span><span>${item.id}</span>`;
-  
-      // 创建所有者的div，并填充内容
-      const ownerDiv = document.createElement('div');
-      ownerDiv.innerHTML = `<span>所有者：</span><span>${item.owner}</span>`;
-  
-      // 创建联系电话的div，并填充内容
-      const phoneDiv = document.createElement('div');
-      phoneDiv.innerHTML = `<span>联系电话：</span><span>${item.phone_number}</span>`;
-  
-      // 将各个div添加到结果div
-      resultDiv.appendChild(plateDiv);
-      resultDiv.appendChild(ownerDiv);
-      resultDiv.appendChild(phoneDiv);
-  
-      // 最后，将结果div添加到页面的某个元素中
-      resultsElement.appendChild(resultDiv);
-  });
-  
-} else {
-    // 如果查询成功但没有结果
-    alert('查询成功但没有找到结果');
-}
+    // 获取并处理查询结果
+    const result = await response.json();
+    const resultsElement = document.getElementById("results");
+    // 清空之前的结果
+    resultsElement.innerHTML = "";
+    if (result.error) {
+      // 如果后端返回错误信息
+      alert(result.error);
+    } else if (result.results && result.results.length > 0) {
+      // 如果查询有结果
+      result.results.forEach((item) => {
+        // 创建包含结果的div
+        const resultDiv = document.createElement("div");
+        resultDiv.classList.add("result-item"); // 添加类以便样式化
 
-// 显示查询结果
-document.getElementById('result').style.display = 'block';
+        // 创建车牌号的div，并填充内容
+        const plateDiv = document.createElement("div");
+        plateDiv.innerHTML = `<span>车牌号：</span><span>${item.id}</span>`;
+
+        // 创建所有者的div，并填充内容
+        const ownerDiv = document.createElement("div");
+        ownerDiv.innerHTML = `<span>所有者：</span><span>${item.owner}</span>`;
+
+        // 创建联系电话的div，并填充内容
+        const phoneDiv = document.createElement("div");
+        phoneDiv.innerHTML = `<span>联系电话：</span><span>${item.phone_number}</span>`;
+
+        // 将各个div添加到结果div
+        resultDiv.appendChild(plateDiv);
+        resultDiv.appendChild(ownerDiv);
+        resultDiv.appendChild(phoneDiv);
+
+        // 最后，将结果div添加到页面的某个元素中
+        resultsElement.appendChild(resultDiv);
+      });
+    } else {
+      // 如果查询成功但没有结果
+      alert("查询成功但没有找到结果");
+    }
+
+    // 显示查询结果
+    document.getElementById("result").style.display = "block";
   } catch (error) {
     // 显示错误信息
     alert(error.message);
@@ -140,6 +137,6 @@ document.getElementById('result').style.display = 'block';
   }
 });
 
-document.getElementById('hideResults').addEventListener('click', function() {
-  document.getElementById('result').style.display = 'none';
+document.getElementById("hideResults").addEventListener("click", function () {
+  document.getElementById("result").style.display = "none";
 });

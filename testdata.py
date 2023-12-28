@@ -20,24 +20,27 @@ def generate_license_plate():
 
     return choice(provinces) + choice(authorities) + ''.join(choice(characters) for _ in range(5))
 
+
 def generate_owner_name():
     from faker import Faker
     fake = Faker("zh_CN")
     return fake.name()
 
+
 def generate_phone_number():
     return '1' + ''.join(str(randint(0, 9)) for _ in range(10))
 
+
 def generate_data():
     for index, _ in enumerate(range(9999999), 1):  # 生成n条数据，enumerate从1开始计数
-            id = generate_license_plate()
-            owner = generate_owner_name()
-            phone_number = generate_phone_number()
-            # 创建一个新的 Data 对象并添加到数据库
-            new_data = Data(id=id, owner=owner, phone_number=phone_number)
-            db.session.add(new_data)
-            db.session.commit()
-            print(f"第{index}条测试数据已生成并添加到数据库。")  # 打印当前条目数
+        id = generate_license_plate()
+        owner = generate_owner_name()
+        phone_number = generate_phone_number()
+        # 创建一个新的 Data 对象并添加到数据库
+        new_data = Data(id=id, owner=owner, phone_number=phone_number)
+        db.session.add(new_data)
+        db.session.commit()
+        print(f"第{index}条测试数据已生成并添加到数据库。")  # 打印当前条目数
     return "1000条测试数据已生成并添加到数据库。"
 
 

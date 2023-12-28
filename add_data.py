@@ -14,7 +14,7 @@ db = SQLAlchemy(app)
 if __name__ == '__main__':
     with app.app_context():
         action = input("请选择操作 (add/edit): ")
-        
+
         if action == "add":
             # 提示用户输入数据
             id = input("请输入牌号: ")
@@ -30,18 +30,19 @@ if __name__ == '__main__':
         elif action == "edit":
             id = input("请输入要编辑的数据ID: ")
             data = Data.query.get(id)
-            
+
             if not data:
                 print(f"未找到 ID 为 {id} 的数据。")
             else:
                 new_owner = input(f"新的所有者 (当前所有者为 {data.owner}): ")
-                new_phone_number = input(f"新的电话号码 (当前电话号码为 {data.phone_number}): ")
-                
+                new_phone_number = input(
+                    f"新的电话号码 (当前电话号码为 {data.phone_number}): ")
+
                 # 更新数据
                 data.owner = new_owner
                 data.phone_number = new_phone_number
                 db.session.commit()
-                
+
                 print(f"数据 ID {id} 已成功更新。")
         else:
             print("无效的操作。请选择 'add' 或 'edit'。")
